@@ -144,6 +144,7 @@ function showLightboxProduct() {
   lightboxImage.alt = product.alt;
   lightboxName.textContent = product.name;
   lightboxPosition.textContent = `${lightboxIndex + 1} / ${lightboxProducts.length}`;
+  productLightbox.querySelector("[data-lightbox-add]").dataset.productId = product.id;
 }
 
 function openLightbox(productId, trigger) {
@@ -175,6 +176,16 @@ productLightbox.querySelector("[data-lightbox-previous]").addEventListener("clic
 });
 productLightbox.querySelector("[data-lightbox-next]").addEventListener("click", () => {
   moveLightbox(1);
+});
+productLightbox.querySelector("[data-lightbox-add]").addEventListener("click", (event) => {
+  const button = event.currentTarget;
+  addProduct(button.dataset.productId);
+  button.classList.add("is-added");
+  button.querySelector("span").textContent = "Toegevoegd ✓";
+  window.setTimeout(() => {
+    button.classList.remove("is-added");
+    button.querySelector("span").textContent = "In winkelmand";
+  }, 1200);
 });
 productLightbox.addEventListener("click", (event) => {
   if (event.target === productLightbox) productLightbox.close();

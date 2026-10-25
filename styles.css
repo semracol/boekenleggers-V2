@@ -3152,6 +3152,7 @@ body {
 .lightbox-figure figcaption {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 20px;
   width: 100%;
   color: #4c4036;
@@ -3159,11 +3160,67 @@ body {
   font-size: 1.15rem;
 }
 
-.lightbox-figure figcaption span:last-child {
+.lightbox-product-details {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.lightbox-price {
+  color: #6d4535;
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.lightbox-actions {
+  display: flex;
   flex: 0 0 auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.lightbox-actions > span {
   color: #71675d;
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
+}
+
+.lightbox-add-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 9px 15px;
+  border: 1px solid #6d4535;
+  border-radius: 999px;
+  background: #6d4535;
+  color: #fffefa;
+  font: 600 0.9rem "Inter", "Avenir Next", sans-serif;
+  cursor: pointer;
+}
+
+.lightbox-add-button:hover {
+  background: #543629;
+}
+
+.lightbox-add-button.is-added {
+  border-color: #456248;
+  background: #456248;
+}
+
+.lightbox-add-button:focus-visible {
+  outline: 3px solid #795342;
+  outline-offset: 3px;
+}
+
+.lightbox-add-button svg {
+  flex: 0 0 auto;
+}
+
+.lightbox-figure figcaption .lightbox-actions > span {
+  flex: 0 0 auto;
 }
 
 .lightbox-close,
@@ -3439,7 +3496,7 @@ select:focus-visible {
   .product-lightbox {
     width: 100vw;
     max-height: 100dvh;
-    padding: 64px 54px 24px;
+    padding: 64px 50px 24px;
     border: 0;
     border-radius: 0;
   }
@@ -3461,6 +3518,32 @@ select:focus-visible {
 
   .lightbox-next {
     right: 6px;
+  }
+
+  .lightbox-figure figcaption {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .lightbox-actions {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .lightbox-add-button {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+  }
+
+  .lightbox-add-button span {
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   .cart-panel {
