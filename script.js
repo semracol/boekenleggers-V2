@@ -1,19 +1,19 @@
-const productCards = [...document.querySelectorAll(".product-card")];
-const products = Object.fromEntries(
-  productCards.map((card) => {
-    const button = card.querySelector("[data-add-product]");
-    return [
-      button.dataset.addProduct,
-      {
-        id: button.dataset.addProduct,
-        name: card.dataset.name,
-        priceCents: Math.round(Number(card.dataset.price) * 100),
-        image: card.querySelector("img").getAttribute("src"),
-        alt: card.querySelector("img").alt,
-      },
-    ];
-  }),
-);
+const catalog = window.BOOKMARK_CATALOG || [];
+const products = Object.fromEntries(catalog.map((product) => [product.id, product]));
+const catalogPageSize = 20;
+const catalogState = { series: "all", page: 1, sort: "sku-asc" };
+const giftboxProductId = "BM-AB-015-C";
+const seriesLabels = {
+  FL: "FL · Bloemen",
+  CT: "CT · Katten",
+  AN: "AN · Dieren",
+  XM: "XM · Winter / Kerst",
+  CH: "CH · Personages",
+  LS: "LS · Landschappen",
+  AB: "AB · Abstract / patroon",
+  QT: "QT · Quotes / tekst",
+  none: "— Geen reeks",
+};
 
 const CART_KEY = "boekenleggers-cart-v1";
 const FREE_SHIPPING_QUANTITY = 5;
@@ -35,6 +35,98 @@ const shippingProgressBar = document.getElementById("shippingProgressBar");
 const termsAccepted = document.getElementById("termsAccepted");
 const checkoutButton = document.getElementById("checkoutButton");
 const cartTrigger = document.querySelector(".cart-pill");
+const productGrid = document.getElementById("productGrid");
+const categoryFilters = document.getElementById("categoryFilters");
+const resultsCount = document.getElementById("resultsCount");
+const productPagination = document.getElementById("productPagination");
+const productSort = document.getElementById("productSort");
+
+function getVisibleProducts() {
+  const filtered = catalog.filter(
+    (product) => catalogState.series === "all" || product.series === catalogState.series,
+  );
+  return filtered.sort((first, second) => {
+    const comparison = first.id.localeCompare(second.id, "en", { numeric: true });
+    return catalogState.sort === "sku-desc" ? -comparison : comparison;
+  });
+}
+
+function renderCatalog() {
+  const counts = catalog.reduce((seriesCounts, product) => {
+    seriesCounts[product.series] = (seriesCounts[product.series] || 0) + 1;
+    return seriesCounts;
+  }, {});
+  const activeProducts = getVisibleProducts();
+  const pageCount = Math.ceil(activeProducts.length / catalogPageSize);
+  catalogState.page = Math.min(catalogState.page, Math.max(1, pageCount));
+  const start = (catalogState.page - 1) * catalogPageSize;
+  const pageProducts = activeProducts.slice(start, start + catalogPageSize);
+
+  categoryFilters.replaceChildren();
+  const categories = [
+    { id: "all", label: "Alle boekenleggers", count: catalog.length },
+    ...Object.entries(seriesLabels).map(([id, label]) => ({
+      id,
+      label,
+      count: counts[id] || 0,
+    })),
+  ];
+  categories.forEach(({ id, label, count }) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "category-filter";
+    button.classList.toggle("is-active", catalogState.series === id);
+    button.setAttribute("aria-pressed", String(catalogState.series === id));
+    button.dataset.series = id;
+    button.disabled = count === 0;
+    button.innerHTML = `<span>${label}</span><span class="category-count">${count}</span>`;
+    categoryFilters.append(button);
+  });
+
+  productGrid.replaceChildren(
+    ...pageProducts.map((product) => {
+      const card = document.createElement("article");
+      card.className = "product-card";
+      card.dataset.name = product.name;
+      card.dataset.price = String(product.priceCents / 100);
+      card.innerHTML = `
+        <div class="product-art">
+          <img class="product-image" src="${product.image}" alt="${product.alt}" width="1100" height="1100" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <div class="meta-row">
+            <span class="tag">${seriesLabels[product.series] || seriesLabels.none}</span>
+            <span class="price">${formatMoney(product.priceCents)}</span>
+          </div>
+          <h3>${product.name}</h3>
+          <button class="card-button" type="button" data-add-product="${product.id}" aria-label="Voeg ${product.name} toe aan winkelmand">In winkelmand</button>
+          <p class="product-shipping-note">Gratis verzending vanaf 5 stuks</p>
+        </div>
+      `;
+      return card;
+    }),
+  );
+
+  const end = Math.min(start + pageProducts.length, activeProducts.length);
+  resultsCount.textContent = activeProducts.length
+    ? `Resultaat ${start + 1}–${end} van ${activeProducts.length} boekenleggers`
+    : "Geen boekenleggers gevonden";
+  productPagination.replaceChildren();
+  if (pageCount > 1) {
+    for (let page = 1; page <= pageCount; page += 1) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "page-button";
+      button.textContent = String(page);
+      button.setAttribute("aria-label", `Pagina ${page}`);
+      if (page === catalogState.page) button.setAttribute("aria-current", "page");
+      button.dataset.page = String(page);
+      productPagination.append(button);
+    }
+  }
+}
+
+renderCatalog();
 
 function readCart() {
   try {
@@ -157,16 +249,38 @@ function closeCart() {
   cartTrigger.focus();
 }
 
-document.querySelectorAll("[data-add-product]").forEach((button) => {
-  button.addEventListener("click", () => {
-    addProduct(button.dataset.addProduct);
-    button.classList.add("is-added");
-    button.textContent = "Toegevoegd ✓";
-    window.setTimeout(() => {
-      button.classList.remove("is-added");
-      button.textContent = "In winkelmand";
-    }, 900);
-  });
+productGrid.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-add-product]");
+  if (!button) return;
+  addProduct(button.dataset.addProduct);
+  button.classList.add("is-added");
+  button.textContent = "Toegevoegd ✓";
+  window.setTimeout(() => {
+    button.classList.remove("is-added");
+    button.textContent = "In winkelmand";
+  }, 900);
+});
+
+categoryFilters.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-series]");
+  if (!button) return;
+  catalogState.series = button.dataset.series;
+  catalogState.page = 1;
+  renderCatalog();
+});
+
+productPagination.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-page]");
+  if (!button) return;
+  catalogState.page = Number(button.dataset.page);
+  renderCatalog();
+  productGrid.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth", block: "start" });
+});
+
+productSort.addEventListener("change", () => {
+  catalogState.sort = productSort.value;
+  catalogState.page = 1;
+  renderCatalog();
 });
 
 document.querySelector("[data-add-giftbox]").addEventListener("click", () => {
@@ -175,7 +289,7 @@ document.querySelector("[data-add-giftbox]").addEventListener("click", () => {
     window.alert("Je winkelmandje kan maximaal 99 boekenleggers bevatten.");
     return;
   }
-  addProduct(Object.keys(products)[0], 5);
+  addProduct(giftboxProductId, 5);
   openCart();
 });
 

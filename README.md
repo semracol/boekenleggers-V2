@@ -12,19 +12,29 @@ Bu klasör, hediye odaklı kitap ayracı mağazasının analizlerini ve GitHub P
 - `web-tasarim-onerileri.md` — tasarım yönü ve görsel yaklaşım notları
 - `site-guncelleme.md` — mağaza güncellemeleri, yayın geçmişi ve yayına çıkış kontrol listesi
 - `taslaklar/mockup-1.html` — seçilen tasarım yönü, daha canlı ve pastel bir versiyon
-- `index.html` — responsive mağaza, ürün kartları, sepet ve çerez arayüzü
+- `index.html` — responsive winkel met een filterbare catalogus met 72 ontwerpen, winkelmandje en cookie-interface
 - `styles.css` — ana tasarım, animasyonlar ve mobile-first stiller
-- `script.js` — sepet, ücretsiz kargo eşiği ve interface animasyonları
+- `script.js` — filteren, sorteren, pagineren, winkelmandje en interface-animaties
+- `catalog-data.js` — productcodes, lokale afbeeldingen en reeksen
 - `consent.js` — çerez tercihleri ve açık onaya bağlı opsiyonel script yükleme kapısı
 - `privacy.html`, `cookies.html`, `voorwaarden.html`, `herroeping.html`, `verzending-retour.html`, `juridische-info.html` — Nederlandstalige juridische pagina's
 - `legal.css` — juridische pagina's
 - `robots.txt`, `sitemap.xml` — zoekmachine-instellingen
 - `assets/logo.svg`, `assets/logo-mark.svg`, `assets/logo-mark-mono.svg`, `assets/favicon.svg` — logo en favicon
 - `assets/fonts/` — lokaal gehoste Baloo 2- en Inter-lettertypen met OFL-licenties
-- `assets/products/` — Etsy klasöründen seçilen dört ürün fotoğrafı
+- `assets/products/catalog/` — 72 geoptimaliseerde productfoto's uit `ETSY/Kart-Resimleri/ayraclar_ornek`
+- `assets/products/` — de eerder gebruikte voorbeeldfoto's voor pagina's en de demo-cadeaubox
 - WhatsApp-contactknop op de winkel- en juridische pagina's, gekoppeld aan `+32 465 75 82 40`
 
-## Seçilen tasarım yönü
+## Huidige V2-vormgeving
+
+De catalogus volgt de rustige winkelindeling van een klassieke boekhandel: filterreeksen links, productfoto's van boven naar beneden en sortering/paginering boven en onder de productlijst. De scherpe albumvormen zijn vervangen door een warme papierkleur, afgeronde productkaarten, subtiele randen en serif-koppen.
+
+- 72 ontwerpen, gefilterd met de aangeleverde reeksindeling: FL bloemen, CT katten, AN dieren, XM winter/kerst, CH personages, LS landschappen, AB abstract/patroon, QT quotes/tekst en geen reeks
+- 20 producten per pagina; reeksfilters en sortering op productcode
+- Productfoto's worden lokaal geladen en zijn teruggeschaald naar 1100 × 1100 voor snellere paginaweergave
+- Productcode wordt als naam getoond zolang er geen definitieve productnamen zijn aangeleverd
+- De voorbeeld-cadeaubox voegt vijf exemplaren van `BM-AB-015-C` toe
 
 Bu sürüm, soğuk lüks değil, sıcak, neşeli ve hediye-gibi hissettiren bir mağaza yaklaşımını benimser:
 
@@ -41,7 +51,7 @@ Bu sürüm, soğuk lüks değil, sıcak, neşeli ve hediye-gibi hissettiren bir 
 - Winkelmandje en cookievoorkeuren worden lokaal in de browser opgeslagen. Cookiekeuzes worden na zes maanden opnieuw gevraagd.
 - De checkout is een demo: er wordt geen bestelling of betaling verwerkt.
 - Juridische teksten zijn voorbereidingen en vormen geen vervanging van juridisch advies.
-- De huidige versie is lokaal voorbereid en nog niet naar GitHub gepusht; publiceer pas na akkoord en na invulling van de bedrijfsgegevens.
+- De V2-site staat op GitHub Pages; de echte checkout is nog niet gekoppeld. Juridische bedrijfsgegevens moeten voor verkoop nog worden ingevuld.
 
 ### Nodig vóór publicatie/verkoop
 
@@ -70,9 +80,9 @@ Sonra tarayıcıda şu adrese gidin:
 
 ## GitHub
 
-Repo: [semracol/boekenleggers](https://github.com/semracol/boekenleggers)
+V2 repo: [semracol/boekenleggers-V2](https://github.com/semracol/boekenleggers-V2)
 
-GitHub Pages: [https://semracol.github.io/boekenleggers/](https://semracol.github.io/boekenleggers/)
+GitHub Pages: [https://semracol.github.io/boekenleggers-V2/](https://semracol.github.io/boekenleggers-V2/)
 
 Lokaal testen:
 
@@ -80,4 +90,4 @@ Lokaal testen:
 python3 -m http.server 8000
 ```
 
-Open daarna `http://localhost:8000`. De huidige lokale wijzigingen zijn niet gepusht.
+Open daarna `http://localhost:8000`. Gebruik voor publiceren uitsluitend de `v2` remote; de oudere `boekenleggers`-repository is een aparte site.

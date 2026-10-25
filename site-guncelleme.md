@@ -1,10 +1,21 @@
 # Site Güncelleme Notları
 
-**Tarih:** 24 Ekim 2026  
-**Çalışma klasörü:** `/Users/semra/Desktop/kitap-ayraci-git`  
-**Yayın adresi:** [https://semracol.github.io/boekenleggers/](https://semracol.github.io/boekenleggers/)
+**Tarih:** 25 Ekim 2026
+**Çalışma klasörü:** `/Users/semra/Desktop/kitap-ayraci-git`
+**Yayın adresi:** [https://semracol.github.io/boekenleggers-V2/](https://semracol.github.io/boekenleggers-V2/)
 
-> Bu notlar hem daha önce yayına alınmış prototip sürümünü hem de mevcut yerel geliştirme çalışmasını içerir. 18:08'de istenen animasyon, yasal sayfalar ve onay akışı değişiklikleri henüz GitHub'a push edilmedi.
+> Bu dosya eski mağaza sürümünün geçmiş notlarını da içerir. Aşağıdaki “V2 katalog revizyonu” bölümü güncel sürüm durumudur.
+
+## V2 katalog revizyonu
+
+- Ürün listesi, kullanıcı tarafından paylaşılan So Many Pages sayfasındaki alışveriş düzeninden esinlenerek yenilendi: solda filtrelenebilir ürün serileri, sağda yukarıdan aşağıya akan ürün ızgarası, sıralama ve sayfalama.
+- Etsy örnek klasöründeki 72 kitap ayracı fotoğrafı `assets/products/catalog/` altına 1100 × 1100 boyutunda sıkıştırılarak eklendi.
+- Kategoriler, kullanıcının verdiği sınıflandırmaya göre adlandırıldı: FL çiçek, CT kedi, AN hayvan, XM kış/yılbaşı, CH karakter, LS manzara, AB soyut/desen, QT söz/yazı ve seri yok. Örnek klasörde henüz ürünü olmayan kategoriler sıfır adetle pasif gösterilir; katalogda her sayfada 20 tasarım var.
+- Tasarım yumuşatıldı: kâğıt tonlarında zemin, yuvarlatılmış ürün kartları, daha hafif çerçeveler ve kitapçı hissi veren serif başlıklar.
+- Ürünler €4,50; 1–4 ürün için kargo €2,50, 5+ ürün için ücretsiz; satış bölgesi Belçika ve Hollanda olarak kaldı.
+- Filtreleme, product-code sıralaması, sayfalama ve tüm ürünlerle çalışan sepet bağlandı. Demo cadeaubox `BM-AB-015-C` tasarımından beş adet ekler.
+- V2 ana sayfası ile tüm yasal sayfaların canonical/Open Graph adresleri, `robots.txt` ve `sitemap.xml` V2 adresine göre güncellendi.
+- Kullanıcı yayına alma istedi; değişiklikler yalnızca `semracol/boekenleggers-V2` deposuna gönderildi. Eski `boekenleggers` deposu değiştirilmedi.
 
 ## Güncel yerel çalışma
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://semracol.github.io/boekenleggers/sitemap.xml
+Sitemap: https://semracol.github.io/boekenleggers-V2/sitemap.xml

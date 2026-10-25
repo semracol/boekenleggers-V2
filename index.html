@@ -12,12 +12,12 @@ FORM: The user-selected Leeszegelalbum direction stages an opened album spread b
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Ontdek kleurrijke boekenleggers voor €4,50 per stuk. Gratis verzending vanaf vijf stuks in België en Nederland."
+      content="Ontdek 72 boekenleggerontwerpen voor €4,50 per stuk. Gratis verzending vanaf vijf stuks in België en Nederland."
     />
     <link rel="canonical" href="https://semracol.github.io/boekenleggers-V2/" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Boekenleggers.be | Een leesmaatje om te geven" />
-    <meta property="og:description" content="Ontdek vier boekenleggerontwerpen en de cadeaubox met gratis verzending vanaf vijf stuks." />
+    <meta property="og:description" content="Ontdek 72 boekenleggerontwerpen en de cadeaubox met gratis verzending vanaf vijf stuks." />
     <meta property="og:url" content="https://semracol.github.io/boekenleggers-V2/" />
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <title>Boekenleggers.be | Kleurrijke boekenleggers</title>
@@ -52,55 +52,25 @@ FORM: The user-selected Leeszegelalbum direction stages an opened album spread b
     <main>
       <section class="hero container">
         <div class="hero-copy">
-          <h1 id="heroTitle">Een leesmaatje om te geven.</h1>
+          <p class="eyebrow">Kleine vondsten voor grote leesmomenten</p>
+          <h1 id="heroTitle">Vind jouw nieuwe leesmaatje.</h1>
           <p class="lead">
-            Kleine illustraties die je leesplek bewaren — leuk voor jezelf en
-            klaar om een boekenliefhebber mee te verrassen.
+            Blader rustig door 72 boekenleggerontwerpen. Elk ontwerp kost €4,50;
+            vanaf vijf stuks sturen we je bestelling gratis op.
           </p>
           <div class="hero-actions">
-            <button class="button primary gift-box-button" type="button" data-add-giftbox>
-              Voeg de cadeaubox toe <span>€22,50</span>
-            </button>
-            <a class="button secondary" href="#collectie">Blader door de collectie</a>
-          </div>
-          <p class="hero-proof">5 boekenleggers · gratis verzending · België & Nederland</p>
-        </div>
-
-        <div class="hero-visual">
-          <div class="product-scene">
-            <div class="album-spread">
-              <div class="album-page album-page-left">
-                <span class="album-caption">EEN KLEIN LEESCADEAU</span>
-                <span class="album-rule"></span>
-                <p>Bewaar je plek.<br />Neem een glimlach mee.</p>
-                <span class="album-seal" aria-hidden="true">✳</span>
-              </div>
-              <figure class="album-page album-page-right">
-                <span class="page-number">K-01</span>
-                <img
-                  src="assets/products/blue-hydrangea-bookmark.jpg"
-                  alt="De blauwe hortensia-boekenlegger met zee en schelpen"
-                  width="2000"
-                  height="2000"
-                  fetchpriority="high"
-                />
-                <figcaption>Blauwe hortensia <span>€4,50</span></figcaption>
-              </figure>
-            </div>
-            <div class="hero-shipping-badge">
-              <span>5 stuks</span>
-              <strong>verzending gratis</strong>
-            </div>
-            <span class="hero-stamp" aria-hidden="true">KALEM<br />LEESPLEZIER</span>
+            <a class="button primary" href="#collectie">Bekijk de collectie</a>
+            <a class="button secondary" href="#gift-box">Ontdek de cadeaubox</a>
           </div>
         </div>
+        <p class="hero-proof">Verzending naar België & Nederland · €2,50 bij 1–4 stuks</p>
       </section>
 
       <section class="promo-strip">
         <div class="marquee-track" aria-label="Gratis verzending vanaf 5 stuks • €4,50 per stuk • Levering in België en Nederland" role="region">
           <div class="marquee-content" aria-hidden="true">
-            <span>Gratis verzending vanaf 5 stuks</span><span>€4,50 per stuk</span><span>Levering in België & Nederland</span>
-            <span>Gratis verzending vanaf 5 stuks</span><span>€4,50 per stuk</span><span>Levering in België & Nederland</span>
+            <span>Gratis verzending vanaf 5 boekenleggers</span><span>€4,50 per stuk</span><span>Levering in België & Nederland</span>
+            <span>Gratis verzending vanaf 5 boekenleggers</span><span>€4,50 per stuk</span><span>Levering in België & Nederland</span>
           </div>
         </div>
       </section>
@@ -108,76 +78,31 @@ FORM: The user-selected Leeszegelalbum direction stages an opened album spread b
       <section class="collection container" id="collectie">
         <div class="section-heading">
           <div>
-            <h2>Kies jouw leeszegel</h2>
-            <p>Vier illustraties, elk met een eigen plekje in je boek.</p>
+            <p class="eyebrow">De collectie</p>
+            <h2>Boekenleggers</h2>
+            <p>Een rustige plek om rond te kijken en jouw favoriet te vinden.</p>
           </div>
-          <span class="section-mark" aria-hidden="true">DE COLLECTIE</span>
         </div>
-
-        <div class="product-grid">
-          <article class="product-card" data-name="Blauwe hortensia" data-price="4.50">
-            <div class="product-art art-peach">
-              <img class="product-image" src="assets/products/blue-hydrangea-bookmark.jpg" alt="Boekenlegger met blauwe hortensia, zee en schelpen" width="2000" height="2000" loading="lazy" />
+        <div class="catalog-layout">
+          <aside class="catalog-sidebar" aria-label="Filter boekenleggers op reeks">
+            <h3>Blader per reeks</h3>
+            <div class="category-filters" id="categoryFilters"></div>
+            <p class="sidebar-note">Alle ontwerpen zijn €4,50 per stuk. Kies er vijf of meer voor gratis verzending.</p>
+          </aside>
+          <div class="catalog-main">
+            <div class="catalog-toolbar">
+              <p id="resultsCount" aria-live="polite">72 boekenleggers</p>
+              <label class="sort-control" for="productSort">
+                Sorteren
+                <select id="productSort">
+                  <option value="sku-asc">Productcode A–Z</option>
+                  <option value="sku-desc">Productcode Z–A</option>
+                </select>
+              </label>
             </div>
-            <div class="product-info">
-              <div class="meta-row">
-                <span class="tag">Bloemen</span>
-                <span class="price">€4,50</span>
-              </div>
-              <h3>Blauwe hortensia</h3>
-              <p>Een zomerse boekenlegger met blauwe hortensia's, zee en schelpen.</p>
-              <button class="card-button" data-add-product="hydrangea">In winkelmand</button>
-              <p class="product-shipping-note">€2,50 verzending · gratis vanaf 5 boekenleggers</p>
-            </div>
-          </article>
-
-          <article class="product-card" data-name="Hartjesballonnen" data-price="4.50">
-            <div class="product-art art-mint">
-              <img class="product-image" src="assets/products/heart-balloons-bookmark.jpg" alt="Boekenlegger met een meisje dat hartvormige ballonnen vasthoudt" width="2000" height="2000" loading="lazy" />
-            </div>
-            <div class="product-info">
-              <div class="meta-row">
-                <span class="tag">Liefde</span>
-                <span class="price">€4,50</span>
-              </div>
-              <h3>Hartjesballonnen</h3>
-              <p>Een lieve illustratie vol hartjes, om cadeau te geven of zelf te houden.</p>
-              <button class="card-button" data-add-product="hearts">In winkelmand</button>
-              <p class="product-shipping-note">€2,50 verzending · gratis vanaf 5 boekenleggers</p>
-            </div>
-          </article>
-
-          <article class="product-card" data-name="Katten & cupcakes" data-price="4.50">
-            <div class="product-art art-gold">
-              <img class="product-image" src="assets/products/cat-reader-bookmark.jpg" alt="Boekenlegger met speelse katten en cupcakes" width="2000" height="2000" loading="lazy" />
-            </div>
-            <div class="product-info">
-              <div class="meta-row">
-                <span class="tag">Katten</span>
-                <span class="price">€4,50</span>
-              </div>
-              <h3>Katten & cupcakes</h3>
-              <p>Een vrolijke boekenlegger voor kattenliefhebbers en zoetekauwen.</p>
-              <button class="card-button" data-add-product="cats">In winkelmand</button>
-              <p class="product-shipping-note">€2,50 verzending · gratis vanaf 5 boekenleggers</p>
-            </div>
-          </article>
-
-          <article class="product-card" data-name="Winterrendier" data-price="4.50">
-            <div class="product-art art-lilac">
-              <img class="product-image" src="assets/products/winter-reindeer-bookmark.jpg" alt="Winterse boekenlegger met een schattig rendier" width="2000" height="2000" loading="lazy" />
-            </div>
-            <div class="product-info">
-              <div class="meta-row">
-                <span class="tag">Winter</span>
-                <span class="price">€4,50</span>
-              </div>
-              <h3>Winterrendier</h3>
-              <p>Een schattige winterfavoriet, mooi als klein lees- of feestdagcadeau.</p>
-              <button class="card-button" data-add-product="reindeer">In winkelmand</button>
-              <p class="product-shipping-note">€2,50 verzending · gratis vanaf 5 boekenleggers</p>
-            </div>
-          </article>
+            <div class="product-grid" id="productGrid" aria-live="polite"></div>
+            <nav class="pagination" id="productPagination" aria-label="Paginering van boekenleggers"></nav>
+          </div>
         </div>
       </section>
 
@@ -186,7 +111,7 @@ FORM: The user-selected Leeszegelalbum direction stages an opened album spread b
           <div class="gift-copy">
             <span class="gift-edition">HET VIJFSTUKS PAKKET</span>
             <h2>Vijf kleine verrassingen. Eén mooi cadeau.</h2>
-            <p>De cadeaubox kost €22,50 en verzendt gratis. In deze demo worden vijf exemplaren van de Blauwe hortensia toegevoegd.</p>
+            <p>De cadeaubox kost €22,50 en verzendt gratis. In deze demo worden vijf exemplaren van hetzelfde ontwerp toegevoegd.</p>
             <ul>
               <li>5 × €4,50 = €22,50</li>
               <li>Gratis verzending in België & Nederland</li>
@@ -198,13 +123,13 @@ FORM: The user-selected Leeszegelalbum direction stages an opened album spread b
             <div class="gift-album" role="img" aria-label="De demo-cadeaubox toont vijf keer de Blauwe hortensia-boekenlegger">
               <span class="gift-page-label">IN DE DEMO-CADEAUBOX</span>
               <div class="gift-stack" aria-hidden="true">
-                <img src="assets/products/blue-hydrangea-bookmark.jpg" alt="" width="2000" height="2000" loading="lazy" />
-                <img src="assets/products/blue-hydrangea-bookmark.jpg" alt="" width="2000" height="2000" loading="lazy" />
-                <img src="assets/products/blue-hydrangea-bookmark.jpg" alt="" width="2000" height="2000" loading="lazy" />
-                <img src="assets/products/blue-hydrangea-bookmark.jpg" alt="" width="2000" height="2000" loading="lazy" />
-                <img src="assets/products/blue-hydrangea-bookmark.jpg" alt="" width="2000" height="2000" loading="lazy" />
+                <img src="assets/products/catalog/BM-AB-015-C.jpg" alt="" width="1100" height="1100" loading="lazy" />
+                <img src="assets/products/catalog/BM-AB-015-C.jpg" alt="" width="1100" height="1100" loading="lazy" />
+                <img src="assets/products/catalog/BM-AB-015-C.jpg" alt="" width="1100" height="1100" loading="lazy" />
+                <img src="assets/products/catalog/BM-AB-015-C.jpg" alt="" width="1100" height="1100" loading="lazy" />
+                <img src="assets/products/catalog/BM-AB-015-C.jpg" alt="" width="1100" height="1100" loading="lazy" />
               </div>
-              <p>5 × Blauwe hortensia</p>
+              <p>5 × ontwerp BM-AB-015-C</p>
               <strong>€22,50 <span>· verzending gratis</span></strong>
             </div>
           </div>
@@ -390,6 +315,7 @@ FORM: The user-selected Leeszegelalbum direction stages an opened album spread b
       </form>
     </dialog>
 
+    <script src="catalog-data.js"></script>
     <script src="script.js"></script>
     <script src="consent.js"></script>
   </body>
