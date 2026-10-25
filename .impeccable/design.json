@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-24T00:00:00.000Z",
+  "title": "Design System: Boekenleggers.be",
+  "extensions": {
+    "colorMeta": {
+      "deep-teal": {
+        "role": "primary",
+        "displayName": "Deep Album Teal",
+        "canonical": "#153c43"
+      },
+      "coral-ink": {
+        "role": "secondary",
+        "displayName": "Coral Stamp Ink",
+        "canonical": "#e65342"
+      },
+      "action-coral": {
+        "role": "secondary",
+        "displayName": "Action Coral",
+        "canonical": "#b93228"
+      },
+      "marigold": {
+        "role": "tertiary",
+        "displayName": "Marigold Page",
+        "canonical": "#f2cf4e"
+      },
+      "album-paper": {
+        "role": "neutral",
+        "displayName": "Album Paper",
+        "canonical": "#f5efdf"
+      },
+      "page-white": {
+        "role": "neutral",
+        "displayName": "Page White",
+        "canonical": "#fffdf5"
+      },
+      "sea-glass": {
+        "role": "tertiary",
+        "displayName": "Sea Glass",
+        "canonical": "#a9d9c6"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Album Display",
+        "purpose": "Opening and section headlines."
+      },
+      "body": {
+        "displayName": "Reading Text",
+        "purpose": "Product, shipping, and supporting copy."
+      },
+      "label": {
+        "displayName": "Edition Label",
+        "purpose": "Product categories and album identifiers."
+      }
+    },
+    "shadows": [
+      {
+        "name": "page-lift",
+        "value": "5px 5px 0 rgba(21, 60, 67, 0.16)",
+        "purpose": "Resting product album pages."
+      },
+      {
+        "name": "action-lift",
+        "value": "4px 4px 0 #f2cf4e",
+        "purpose": "Primary calls to action."
+      },
+      {
+        "name": "gift-folio",
+        "value": "8px 8px 0 #e65342",
+        "purpose": "Large gift-box album."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-ease",
+        "value": "180ms ease",
+        "purpose": "Small card and control state changes."
+      },
+      {
+        "name": "marquee",
+        "value": "28s linear infinite",
+        "purpose": "Continuous offer strip; disabled for reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet",
+        "value": "980px"
+      },
+      {
+        "name": "mobile",
+        "value": "680px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Gift Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Adds the five-piece demo cadeaubox to the cart.",
+      "html": "<button class=\"ds-button-primary\" type=\"button\">Voeg de cadeaubox toe · €22,50</button>",
+      "css": ".ds-button-primary { min-height: 54px; padding: 14px 20px; border: 0; border-radius: 4px; background: #b93228; color: #fffdf5; font: 800 1rem/1.35 Inter, sans-serif; box-shadow: 4px 4px 0 #f2cf4e; cursor: pointer; transition: background 180ms ease; } .ds-button-primary:hover { background: #92271f; } .ds-button-primary:focus-visible { outline: 3px solid #153c43; outline-offset: 3px; }"
+    },
+    {
+      "name": "Secondary Album Link",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Moves visitors from the hero cover into the collection.",
+      "html": "<a class=\"ds-button-secondary\" href=\"#collectie\">Blader door de collectie</a>",
+      "css": ".ds-button-secondary { display: inline-flex; min-height: 54px; align-items: center; justify-content: center; padding: 14px 20px; border: 1px solid #fffdf5; border-radius: 4px; background: transparent; color: #fffdf5; font: 800 1rem/1.35 Inter, sans-serif; text-decoration: none; } .ds-button-secondary:hover { background: #fffdf5; color: #153c43; } .ds-button-secondary:focus-visible { outline: 3px solid #f2cf4e; outline-offset: 3px; }"
+    },
+    {
+      "name": "Product Stamp Page",
+      "kind": "card",
+      "refersTo": "product-card",
+      "description": "Shows one real bookmark design, price, and add-to-cart action.",
+      "html": "<article class=\"ds-product-page\"><span class=\"ds-product-tag\">Bloemen</span><h3>Blauwe hortensia</h3><p>Een boekenlegger met bloemen, zee en schelpen.</p><button>In winkelmand</button></article>",
+      "css": ".ds-product-page { position: relative; padding: 18px; border: 2px solid #153c43; border-radius: 4px; background: #fffdf5; color: #153c43; box-shadow: 5px 5px 0 rgba(21,60,67,.16); } .ds-product-page h3 { margin: 12px 0 8px; font: 800 1.5rem/1.1 'Baloo 2', sans-serif; } .ds-product-page p { color: #385c60; line-height: 1.55; } .ds-product-page button { min-height: 48px; padding: 12px 16px; border: 0; border-radius: 3px; background: #b93228; color: #fffdf5; font: 800 1rem Inter, sans-serif; } .ds-product-tag { padding: 5px 9px; border: 1px solid #153c43; color: #153c43; font: 800 .68rem Inter, sans-serif; text-transform: uppercase; }"
+    },
+    {
+      "name": "Album Edition Label",
+      "kind": "chip",
+      "refersTo": "edition-label",
+      "description": "Identifies collection and gift-box pages.",
+      "html": "<span class=\"ds-edition-label\">Het vijfstuks pakket</span>",
+      "css": ".ds-edition-label { display: inline-block; color: #8d2c24; font: 800 .72rem/1.4 Inter, sans-serif; letter-spacing: .13em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Collection Tab",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "A readable paper tab that guides visitors through the album.",
+      "html": "<a class=\"ds-nav-tab\" href=\"#collectie\">De collectie</a>",
+      "css": ".ds-nav-tab { display: inline-flex; min-height: 44px; align-items: center; padding: 0 12px; border: 1px solid transparent; border-radius: 3px; color: #153c43; font: 700 .94rem Inter, sans-serif; text-decoration: none; } .ds-nav-tab:hover, .ds-nav-tab:focus-visible { border-color: #153c43; background: #f2cf4e; } .ds-nav-tab:focus-visible { outline: 3px solid #a62e28; outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Leeszegelalbum",
+    "overview": "The store feels like opening a compact, colorful album of reading gifts. Real bookmark photographs sit inside paper frames, and labels, perforations, edition marks, and page references make the catalog feel collected rather than mass-produced. The tone is bright and tactile, with teal cloth, coral ink, and marigold paper carrying the page.\n\nThe album language organizes the catalog and gift presentation; it never changes the product facts. Keep the demo-cart status clear, and do not imply that the five-piece box contains five different designs.",
+    "keyCharacteristics": [
+      "Saturated album-cover fields balanced by paper pages.",
+      "Real product photography as the visual proof.",
+      "Perforated edges, stamp-like marks, and bold rounded type.",
+      "One direct gift-box action, with clear price and shipping terms."
+    ],
+    "rules": [
+      {
+        "name": "The Real-Page Rule",
+        "body": "Use supplied bookmark photography as the product proof; decorative album framing must never replace it.",
+        "section": "colors"
+      }
+    ],
+    "dos": [
+      "Do use actual local product images for album pages and product listings.",
+      "Do pair the €22,50 gift-box price with its five-piece contents and free-shipping status.",
+      "Do keep the hero action and product prices legible against their backgrounds.",
+      "Do preserve keyboard focus, reduced-motion support, and 44px minimum touch targets."
+    ],
+    "donts": [
+      "Don't invent customer reviews, customization options, or product capabilities.",
+      "Don't imply that the current demo cadeaubox contains five distinct designs.",
+      "Don't use album decoration to obscure a product, price, shipping condition, or demo limitation."
+    ]
+  }
+}
