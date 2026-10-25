@@ -276,6 +276,19 @@ FORM: The user-selected Leeszegelalbum direction stages an opened album spread b
       <p class="cart-demo-note">Demo: online betalen en bestellen is nog niet beschikbaar.</p>
     </aside>
 
+    <dialog class="product-lightbox" id="productLightbox" aria-label="Boekenlegger bekijken">
+      <button class="lightbox-close" type="button" data-lightbox-close aria-label="Afbeelding sluiten">×</button>
+      <button class="lightbox-arrow lightbox-previous" type="button" data-lightbox-previous aria-label="Vorige boekenlegger">‹</button>
+      <figure class="lightbox-figure">
+        <img id="lightboxImage" alt="" />
+        <figcaption>
+          <span id="lightboxName"></span>
+          <span id="lightboxPosition" aria-live="polite"></span>
+        </figcaption>
+      </figure>
+      <button class="lightbox-arrow lightbox-next" type="button" data-lightbox-next aria-label="Volgende boekenlegger">›</button>
+    </dialog>
+
     <section class="cookie-banner" id="cookieBanner" aria-labelledby="cookieTitle" hidden>
       <div class="cookie-copy">
         <h2 id="cookieTitle">Jouw privacykeuze</h2>

@@ -40,6 +40,13 @@ const categoryFilters = document.getElementById("categoryFilters");
 const resultsCount = document.getElementById("resultsCount");
 const productPagination = document.getElementById("productPagination");
 const productSort = document.getElementById("productSort");
+const productLightbox = document.getElementById("productLightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const lightboxName = document.getElementById("lightboxName");
+const lightboxPosition = document.getElementById("lightboxPosition");
+let lightboxProducts = [];
+let lightboxIndex = 0;
+let lightboxReturnFocus = null;
 
 function getVisibleProducts() {
   const filtered = catalog.filter(
@@ -91,7 +98,9 @@ function renderCatalog() {
       card.dataset.price = String(product.priceCents / 100);
       card.innerHTML = `
         <div class="product-art">
-          <img class="product-image" src="${product.image}" alt="${product.alt}" width="1100" height="1100" loading="lazy" />
+          <button class="product-image-button" type="button" data-open-lightbox="${product.id}" aria-label="Bekijk ${product.name} in groot formaat">
+            <img class="product-image" src="${product.image}" alt="${product.alt}" width="1100" height="1100" loading="lazy" />
+          </button>
         </div>
         <div class="product-info">
           <div class="meta-row">
@@ -127,6 +136,53 @@ function renderCatalog() {
 }
 
 renderCatalog();
+
+function showLightboxProduct() {
+  const product = lightboxProducts[lightboxIndex];
+  if (!product) return;
+  lightboxImage.src = product.image;
+  lightboxImage.alt = product.alt;
+  lightboxName.textContent = product.name;
+  lightboxPosition.textContent = `${lightboxIndex + 1} / ${lightboxProducts.length}`;
+}
+
+function openLightbox(productId, trigger) {
+  lightboxProducts = getVisibleProducts();
+  lightboxIndex = lightboxProducts.findIndex((product) => product.id === productId);
+  if (lightboxIndex < 0) return;
+  lightboxReturnFocus = trigger;
+  showLightboxProduct();
+  productLightbox.showModal();
+  productLightbox.querySelector("[data-lightbox-close]").focus();
+}
+
+function moveLightbox(direction) {
+  if (!lightboxProducts.length) return;
+  lightboxIndex = (lightboxIndex + direction + lightboxProducts.length) % lightboxProducts.length;
+  showLightboxProduct();
+}
+
+productGrid.addEventListener("click", (event) => {
+  const trigger = event.target.closest("[data-open-lightbox]");
+  if (trigger) openLightbox(trigger.dataset.openLightbox, trigger);
+});
+
+productLightbox.querySelector("[data-lightbox-close]").addEventListener("click", () => {
+  productLightbox.close();
+});
+productLightbox.querySelector("[data-lightbox-previous]").addEventListener("click", () => {
+  moveLightbox(-1);
+});
+productLightbox.querySelector("[data-lightbox-next]").addEventListener("click", () => {
+  moveLightbox(1);
+});
+productLightbox.addEventListener("click", (event) => {
+  if (event.target === productLightbox) productLightbox.close();
+});
+productLightbox.addEventListener("close", () => {
+  lightboxReturnFocus?.focus();
+  lightboxReturnFocus = null;
+});
 
 function readCart() {
   try {
@@ -324,6 +380,16 @@ checkoutButton.addEventListener("click", () => {
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && !cartPanel.hidden) closeCart();
+  if (!productLightbox.open) return;
+  if (event.key === "Escape") {
+    productLightbox.close();
+  } else if (event.key === "ArrowLeft") {
+    event.preventDefault();
+    moveLightbox(-1);
+  } else if (event.key === "ArrowRight") {
+    event.preventDefault();
+    moveLightbox(1);
+  }
 });
 
 renderCart();

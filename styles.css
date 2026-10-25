@@ -3003,6 +3003,32 @@ body {
   mix-blend-mode: multiply;
 }
 
+.product-image-button {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.product-image-button:focus-visible {
+  outline: 3px solid #795342;
+  outline-offset: 3px;
+}
+
+.product-image-button .product-image {
+  transition: transform 220ms ease;
+}
+
+.product-image-button:hover .product-image {
+  transform: scale(1.04);
+}
+
 .product-info {
   padding: 16px 17px 18px;
 }
@@ -3080,6 +3106,110 @@ body {
   border-color: #6d4535;
   background: #6d4535;
   color: #fffefa;
+}
+
+.product-lightbox {
+  position: fixed;
+  width: min(94vw, 1040px);
+  max-width: none;
+  max-height: min(92vh, 940px);
+  padding: 58px 76px 28px;
+  overflow: visible;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 28px;
+  background: #f8f5ef;
+  color: #342e29;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+}
+
+.product-lightbox[open] {
+  display: grid;
+  place-items: center;
+}
+
+.product-lightbox::backdrop {
+  background: rgba(34, 29, 25, 0.78);
+  backdrop-filter: blur(5px);
+}
+
+.lightbox-figure {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  min-width: 0;
+  margin: 0;
+}
+
+.lightbox-figure img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(88vh - 130px);
+  object-fit: contain;
+}
+
+.lightbox-figure figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  color: #4c4036;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+}
+
+.lightbox-figure figcaption span:last-child {
+  flex: 0 0 auto;
+  color: #71675d;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+}
+
+.lightbox-close,
+.lightbox-arrow {
+  display: grid;
+  position: absolute;
+  z-index: 1;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid #e1d7ca;
+  border-radius: 50%;
+  background: #fffefa;
+  color: #40382f;
+  font-family: Arial, sans-serif;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(36, 28, 22, 0.12);
+}
+
+.lightbox-close {
+  top: 14px;
+  right: 14px;
+}
+
+.lightbox-arrow {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-previous {
+  left: 14px;
+}
+
+.lightbox-next {
+  right: 14px;
+}
+
+.lightbox-close:hover,
+.lightbox-arrow:hover {
+  border-color: #6d4535;
+  background: #f0ebe2;
 }
 
 .gift-banner {
@@ -3306,6 +3436,33 @@ select:focus-visible {
     border-radius: 24px;
   }
 
+  .product-lightbox {
+    width: 100vw;
+    max-height: 100dvh;
+    padding: 64px 54px 24px;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .lightbox-figure img {
+    max-height: calc(100dvh - 160px);
+  }
+
+  .lightbox-arrow {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .lightbox-previous {
+    left: 6px;
+  }
+
+  .lightbox-next {
+    right: 6px;
+  }
+
   .cart-panel {
     border-radius: 22px 0 0 22px;
   }
@@ -3322,7 +3479,8 @@ select:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   .product-card,
-  .product-card:hover {
+  .product-card:hover,
+  .product-image-button .product-image {
     transition: none;
     transform: none;
   }
